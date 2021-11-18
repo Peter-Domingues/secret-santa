@@ -65,7 +65,7 @@
       changeAction(participants) {
           this.$store.dispatch("changeAction", Number(participants))
         console.log(this.currentParticipant)
-        this.$router.push('/about');
+        this.$router.push('/participants');
       }
     }
   }
