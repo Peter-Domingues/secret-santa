@@ -1,6 +1,6 @@
 <template>
       <div class="grid-wrap">
-        <div class="text-h3 my-10 title">
+        <div class="text-h3 my-10 title red--text">
           Bem vindo ao Papai Noel Secreto!
         </div>
         <div class="text-h6 mb-5 title">
