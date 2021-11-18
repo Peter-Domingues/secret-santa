@@ -8,11 +8,11 @@
         </div>
         <div>
           <v-select
-            :items="participants"
-            v-model="currentParticipant"
+            :items="numOfParticipants"
+            v-model="participants"
             label="Quantidade de participantes"
             solo
-            @click:append="selectItem"
+            @click:append="changeAction"
           ></v-select>
         </div>
         <div align="center">
@@ -20,22 +20,21 @@
               x-large
               color="success"
               dark
-              @click="selectItem()"
+              @click="changeAction(participants)"
             >
               Próximo
             </v-btn>
-        </div>
-        <div v-if="currentParticipant > 0">
-          Coloque os nomes dos participantes
         </div>
       </div>
 </template>
 
 <script>
+  import { mapState } from 'vuex';
+
   export default {
     name: 'Home',
     data: () => ({
-      participants: [
+      numOfParticipants: [
         3,
         4,
         5,
@@ -55,16 +54,18 @@
         19,
         20,
       ],
-      currentParticipant: 0
+      participants: 0
     }),
+    computed: {
+      ...mapState({
+        currentParticipant: state => state.currentParticipant
+      })
+    },
     methods: {
-      selectItem(){
-        let newparticipantselect = {
-          currentParticipant: this.currentParticipant
-        }
-        newparticipantselect
+      changeAction(participants) {
+          this.$store.dispatch("changeAction", Number(participants))
         console.log(this.currentParticipant)
-        //this.$router.push('/about');
+        this.$router.push('/about');
       }
     }
   }
