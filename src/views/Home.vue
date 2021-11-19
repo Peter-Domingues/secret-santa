@@ -1,6 +1,17 @@
 <template>
   <div class="background">
     <div class="grid-wrap" >
+      <v-alert
+        type="error"
+        class="errorNext"
+        v-if="noParticipants"
+      >
+        <v-row align="center">
+          <v-col class="grow">
+            Erro! É necessário selecionar ao menos 3 participantes!
+          </v-col>
+        </v-row>
+      </v-alert>
       <div class="myTitle my-5">
         Bem vindo ao Papai Noel Secreto!
       </div>
@@ -14,7 +25,7 @@
           v-model="participants"
           label="Quantidade de participantes"
           solo
-          @click:append="changeAction"
+          @click:append="nextPage"
         ></v-select>
       </div>
       <div align="center">
@@ -22,7 +33,7 @@
             x-large
             color="success"
             dark
-            @click="changeAction(participants)"
+            @click="nextPage(participants)"
           >
             Próximo
           </v-btn>
@@ -58,6 +69,7 @@
         20,
       ],
       participants: 0,
+      noParticipants: false,
     }),
     computed: {
       ...mapState({
@@ -65,9 +77,15 @@
       })
     },
     methods: {
-      changeAction(participants) {
-        this.$store.dispatch("changeAction", Number(participants))
-        this.$router.push('/participants');
+      nextPage(participants) {
+        if(participants != 0){
+          this.$store.dispatch("changeAction", Number(participants))
+          this.$router.push('/participants');
+          this.noParticipants = false;
+        } else {
+          this.noParticipants = true;
+          setTimeout(() => {this.noParticipants = false}, 3000);
+        }
       }
     }
   }
@@ -106,8 +124,8 @@
     align-content: center;
     margin: 0% 10%;
     background-color: white;
-    padding: 2%;
-    border-radius: 2vw;
+    padding: 1%;
+    border-radius: 1vw;
   }
   .santa {
     width: 30%;
@@ -116,5 +134,11 @@
   .inputSelect {
     align-self: center;
     width: 50%;
+  }
+  .errorNext {
+    width: 100%;
+    justify-self: center;
+    align-self: center;
+    margin: 0%;
   }
 </style>

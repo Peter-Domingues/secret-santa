@@ -1,82 +1,97 @@
 <template>
-  <div class="grid-wrap">
-    <div class="text-h4 title red--text">
-      O seu Papai Noel Secreto tem {{numOfParticipants}} participantes!
-    </div>
-    <div class="text-h5 mt-10 mb-3 title">
-      Escreva o nome de cada um
-    </div>
-    <div class="new-participant">
-      <v-text-field
-        label="Nome do Participante"
-        v-model="newParticipantName"
-        class="pa-3"
-        outlined
-        hide-details
-        clearable
-        @keyup.enter="addParticipant"
-      ></v-text-field>
-      <v-btn
-          x-large
-          color="success"
-          dark
-          @click="addParticipant"
-        >
-          <v-icon
-            large
-          >
-            mdi-plus
-          </v-icon>
-        </v-btn>
-    </div>
-    <div align="center">
+  <div class="background">
+    <div class="grid-wrap">
+      <v-alert
+        type="error"
+        class="errorNext"
+        v-if="anError"
+      >
+        <v-row align="center">
+          <v-col class="grow">
+            {{errorMessage}}
+          </v-col>
+        </v-row>
+      </v-alert>
+      <div class="myTitle">
+        O seu Papai Noel Secreto tem {{numOfParticipants}} participantes!
+      </div>
+      <img src="santa2.png" class="santa"/>
+      <div class="myText mb-3">
+        Escreva o nome de cada um
+      </div>
+      <div class="new-participant">
+        <v-text-field
+          label="Nome do Participante"
+          v-model="newParticipantName"
+          class="pa-3"
+          outlined
+          hide-details
+          clearable
+          @keyup.enter="addParticipant"
+        ></v-text-field>
         <v-btn
-          x-large
-          color="success"
-          dark
-          @click="selectParticipants"
-        >
-          Sortear
-        </v-btn>
-        <v-btn
-          x-large
-          color="success"
-          dark
-          class="ml-5"
-          @click="goBack"
-        >
-          Voltar
-        </v-btn>
-    </div>
-    <v-list
-    class="pt-0"
-    >
-    <div
-    v-for="person in participantsList"
-    :key="person.id"
-    >
-      <v-list-item>
-      <template v-slot:default>
-        <v-list-item-content>
-          <v-list-item-title
+            x-large
+            color="success"
+            dark
+            @click="addParticipant"
           >
-          {{person.name}}
-          </v-list-item-title>
-        </v-list-item-content>
-
-          <v-list-item-action>
-          <v-btn
-            @click.stop="deleteParticipant(person.id)"
-            icon
-          >
-            <v-icon color="red">mdi-delete</v-icon>
+            <v-icon
+              large
+            >
+              mdi-plus
+            </v-icon>
           </v-btn>
-        </v-list-item-action>
-      </template>
-    </v-list-item>
-    <v-divider></v-divider>
+      </div>
+      <div align="center">
+          <v-btn
+            x-large
+            color="success"
+            dark
+            @click="selectParticipants"
+          >
+            Sortear
+          </v-btn>
+          <v-btn
+            x-large
+            color="success"
+            dark
+            class="ml-5"
+            @click="goBack"
+          >
+            Voltar
+          </v-btn>
+      </div>
+      <v-list
+      class="pt-0"
+      >
+      <div
+      v-for="person in participantsList"
+      :key="person.id"
+      class="listOfNames"
+      >
+        <v-list-item>
+        <template >
+          <v-list-item-content>
+            <v-list-item-title
+            >
+            {{person.name}}
+            </v-list-item-title>
+          </v-list-item-content>
+
+            <v-list-item-action>
+            <v-btn
+              @click.stop="deleteParticipant(person.id)"
+              icon
+            >
+              <v-icon color="red">mdi-delete</v-icon>
+            </v-btn>
+          </v-list-item-action>
+        </template>
+      </v-list-item>
+      <v-divider></v-divider>
+      </div>
+      </v-list>
     </div>
-    </v-list>
   </div>
 </template>
 
@@ -90,6 +105,8 @@ import { mapState } from 'vuex'
         participantsList: [],
         match: [],
         unselectedParticipants: [],
+        anError: false,
+        errorMessage: ''
       }
     },
     computed: {
@@ -109,11 +126,17 @@ import { mapState } from 'vuex'
           flipped: false
         }
           console.log(this.participantsList)
-        if(this.participantsList.length < this.numOfParticipants && this.newParticipantName !== '')  {
+        if(this.participantsList.length >= this.numOfParticipants)  {
+          this.anError = true
+          this.errorMessage = 'Erro! Você já adicionou o número maximo de participantes!'
+          setTimeout(() => {this.anError = false}, 3000);
+        }else if(this.newParticipantName === ''){
+          this.anError = true
+          this.errorMessage = 'Erro! O nome não pode ficar vazio!'
+          setTimeout(() => {this.anError = false}, 3000);
+        }else{
           this.participantsList.push(newParticipant)
           this.newParticipantName = ''
-        }else{
-          console.log('Já foram todos os participantes')
         }
       },
       deleteParticipant(id) {
@@ -182,21 +205,16 @@ import { mapState } from 'vuex'
 </script>
 
 <style >
-  .title {
-    text-align: center
-  }
-  .grid-wrap {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    align-content: center;
-    margin: 0% 10%;
-  }
   .new-participant {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 50%;
+    align-self: center;
+  }
+  .listOfNames {
+    width: 50%;
+    align-self: center;
   }
 </style>
 
