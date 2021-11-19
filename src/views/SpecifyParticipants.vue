@@ -105,7 +105,8 @@ import { mapState } from 'vuex'
       addParticipant(){
         let newParticipant = {
           id: Date.now(),
-          name: this.newParticipantName
+          name: this.newParticipantName,
+          flipped: false
         }
           console.log(this.participantsList)
         if(this.participantsList.length < this.numOfParticipants && this.newParticipantName !== '')  {
@@ -174,6 +175,7 @@ import { mapState } from 'vuex'
         //console.log(this.participantsList)
         this.$store.dispatch("finalListAction", Object(this.participantsList))
         console.log(this.finalListOfSecretSanta)
+        this.$router.push('/results');
       },
     }
   }
