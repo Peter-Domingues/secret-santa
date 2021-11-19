@@ -10,7 +10,7 @@
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
-          gradient="to top right, rgba(0,0,0,.3), rgba(0,0,0,.1)"
+          gradient="to top right, rgba(0,0,0,.2), rgba(0,0,0,.1)"
         ></v-img>
       </template>
     </v-app-bar>  
