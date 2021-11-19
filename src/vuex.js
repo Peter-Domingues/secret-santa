@@ -5,16 +5,24 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state:{
-        currentParticipant : 0
+        numOfParticipants : 0,
+        finalListOfSecretSanta: []
     },
     mutations: {
         changeParticipant ( state, payload ) {
-            state.currentParticipant = payload
+            state.numOfParticipants = payload
+        },
+        changeFinalList ( state, payload ) {
+            state.finalListOfSecretSanta = payload
         }
     },
+    
     actions: {
-        changeAction(context, currentParticipant) {
-            context.commit("changeParticipant", currentParticipant);
+        changeAction(context, numOfParticipants) {
+            context.commit("changeParticipant", numOfParticipants);
+        },
+        finalListAction(context, finalListOfSecretSanta) {
+            context.commit("changeFinalList", finalListOfSecretSanta);
         }
     }
 })

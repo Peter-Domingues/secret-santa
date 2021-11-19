@@ -8,7 +8,7 @@
         </div>
         <div>
           <v-select
-            :items="numOfParticipants"
+            :items="maxParticipants"
             v-model="participants"
             label="Quantidade de participantes"
             solo
@@ -34,7 +34,7 @@
   export default {
     name: 'Home',
     data: () => ({
-      numOfParticipants: [
+      maxParticipants: [
         3,
         4,
         5,
@@ -58,13 +58,13 @@
     }),
     computed: {
       ...mapState({
-        currentParticipant: state => state.currentParticipant
+        numOfParticipants: state => state.numOfParticipants
       })
     },
     methods: {
       changeAction(participants) {
-          this.$store.dispatch("changeAction", Number(participants))
-        console.log(this.currentParticipant)
+        this.$store.dispatch("changeAction", Number(participants))
+        console.log(this.numOfParticipants)
         this.$router.push('/participants');
       }
     }
