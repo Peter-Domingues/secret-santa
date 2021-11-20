@@ -1,6 +1,12 @@
 <template>
-    <v-main>
-      <v-container>
+    <v-main class="background">
+      <v-container class="wrap">
+        <v-row>
+          <v-col>
+            <div class="myTitle" >Aqui estão os resultados do sorteio!</div>
+            <div class="myText" >ATENÇÃO, abra apenas o cartão com o seu nome para descobrir quem você tirou!</div>
+          </v-col>
+        </v-row>
         <v-row>
           <v-col
             v-for="n in finalListOfSecretSanta"
@@ -20,6 +26,11 @@
                 </transition>
             </li>
           </v-col>
+        </v-row>
+        <v-row justify="center" class="mb-3">
+          <v-btn x-large color="#c92727" dark class="ml-5" @click="goBack">
+            Reiniciar
+          </v-btn>
         </v-row>
       </v-container>
     </v-main>
@@ -54,7 +65,10 @@ import { mapState } from 'vuex'
             return {
                 'card front': n.flipped,  
                 'card back': !n.flipped}
-        }
+        },
+        goBack() {
+          this.$router.push("/");
+        },
     }
   }
 </script>
@@ -100,7 +114,7 @@ body {
   }
   
   .front{
-    background-color: #e65f51;
+    background-color: #8f1a1a;
     }
   
   .back{
@@ -117,6 +131,10 @@ body {
   .flip-enter, .flip-leave {
     transform: rotateY(180deg);
     opacity: 0;
-  
+  }
+  .wrap {
+    background-color: white;
+    padding: 1%;
+    border-radius: 1vw;
   }
 </style>
