@@ -18,12 +18,17 @@
           label="Quantidade de participantes"
           solo
           @click:append="nextPage"
-          
           color="success"
         ></v-select>
       </div>
       <div align="center">
-        <v-btn x-large color="success" class="mb-5" dark @click="nextPage(participants)">
+        <v-btn
+          x-large
+          color="success"
+          class="mb-5"
+          dark
+          @click="nextPage(participants)"
+        >
           Próximo
         </v-btn>
       </div>
@@ -122,7 +127,7 @@ export default {
   margin: 0%;
 }
 @media only screen and (max-width: 600px) {
- .input-select {
+  .input-select {
     width: 100%;
     padding: 0% 5%;
   }

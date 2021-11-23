@@ -25,7 +25,7 @@
           @keyup.enter="addParticipant"
         ></v-text-field>
         <div class="btn-add">
-          <v-btn large color="success" dark @click="addParticipant" >
+          <v-btn large color="success" dark @click="addParticipant">
             <v-icon x-large> mdi-plus </v-icon>
           </v-btn>
         </div>
@@ -39,10 +39,7 @@
         </v-btn>
       </div>
       <v-list class="pt-0 list-of-names">
-        <div
-          v-for="person in participantsList"
-          :key="person.id"
-        >
+        <div v-for="person in participantsList" :key="person.id">
           <v-list-item>
             <template>
               <v-list-item-content>
@@ -225,19 +222,19 @@ export default {
   color: #39853c;
 }
 .btn-specify {
-    margin-bottom:1%;
+  margin-bottom: 1%;
 }
 .btn-add {
   padding-left: 2%;
 }
 @media only screen and (max-width: 600px) {
- .new-participant {
+  .new-participant {
     width: 100%;
     flex-direction: column;
     margin-bottom: 0%;
   }
   .btn-specify {
-    margin:7% 2%;
+    margin: 7% 2%;
   }
   .btn-add {
     margin-top: 5%;

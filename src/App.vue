@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="#8f1a1a" dark src="christmas.jpg" >
+    <v-app-bar app color="#8f1a1a" dark src="christmas.jpg">
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
