@@ -1,29 +1,12 @@
-# secret-santa
+# Secret Santa
+Secret Santa is a simple app created with `Vue.js`, `Vuetify.js`, `JavaScript`, `HTML` and `CSS` that allows the user to randomly assign a secret santa for each person added to a list of participants.
 
-## Project setup
-```
-npm install
-```
+# Prerequisite
+- Must have `Node.js` installed, if you don't have it yet, just [click here](https://nodejs.org/en/download/) and follow the instructions of their website.
 
-### Compiles and hot-reloads for development
+# Running the project
+The project can be run using the following command:
+```bash
+npm install && npm run serve
 ```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+This command is set to install all the dependencies and run the project. Once the project runs, you can access it in http://localhost:8080/
