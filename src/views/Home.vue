@@ -1,17 +1,17 @@
 <template>
   <div class="background">
     <div class="grid-wrap">
-      <v-alert type="error" class="errorNext" v-if="noParticipants">
+      <v-alert type="error" class="error-next" v-if="noParticipants">
         <v-row align="center">
           <v-col class="grow">
             Erro! É necessário selecionar ao menos 3 participantes!
           </v-col>
         </v-row>
       </v-alert>
-      <div class="myTitle my-5">Bem vindo ao Papai Noel Secreto!</div>
+      <div class="my-title my-5">Bem vindo ao Papai Noel Secreto!</div>
       <img src="santa.png" class="santa" />
-      <div class="myText">Quantas pessoas vão participar este ano?</div>
-      <div class="inputSelect">
+      <div class="my-text">Quantas pessoas vão participar este ano?</div>
+      <div class="input-select">
         <v-select
           :items="maxParticipants"
           v-model="participants"
@@ -78,23 +78,22 @@ export default {
   flex-direction: column;
   padding: 2%;
 }
-.myTitle {
+.my-title {
   font-family: "Mountains of Christmas", cursive;
   font-size: 45px;
   color: #8f1a1a;
   font-size: clamp(32px, 5vw, 50px);
   margin: 3% 2%;
 }
-.myText {
+.my-text {
   font-family: "Montagu Slab", serif;
   font-size: clamp(17px, 5vw, 25px);
   color: #39853c;
   margin: 4% 0% 1% 0%;
 }
-.myTitle,
-.myText {
+.my-title,
+.my-text {
   text-align: center;
-  width: 100%;
 }
 .grid-wrap {
   display: flex;
@@ -112,26 +111,26 @@ export default {
   align-self: center;
   min-width: 150px;
 }
-.inputSelect {
+.input-select {
   align-self: center;
   width: 50%;
 }
-.errorNext {
+.error-next {
   width: 100%;
   justify-self: center;
   align-self: center;
   margin: 0%;
 }
 @media only screen and (max-width: 600px) {
- .inputSelect {
+ .input-select {
     width: 100%;
     padding: 0% 5%;
   }
-  .myTitle {
-    margin: 9%;
-  }
   .grid-wrap {
     margin: 0% 2%;
+  }
+  .my-title {
+    padding: 2%;
   }
 }
 </style>

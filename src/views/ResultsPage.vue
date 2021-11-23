@@ -2,16 +2,18 @@
     <v-main class="background">
       <v-container class="wrap">
         <v-row>
-          <v-col>
-            <div class="myTitle" >Aqui estão os resultados do sorteio!</div>
-            <div class="myText" >ATENÇÃO, abra apenas o cartão com o seu nome para descobrir quem você tirou!</div>
+          <v-col class="results-text">
+            <div class="my-title" >Aqui estão os resultados do sorteio!</div>
+            <div class="my-text" >ATENÇÃO, abra apenas o cartão com o seu nome para descobrir quem você tirou!</div>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row >
           <v-col
             v-for="n in finalListOfSecretSanta"
             :key="n.id"
-            cols="4"
+            xm="1"
+            lg="4"
+            md="3"
           >
             <li 
                 v-on:click="toggleCard(n)" 
@@ -137,4 +139,14 @@ body {
     padding: 1%;
     border-radius: 1vw;
   }
+
+  @media only screen and (max-width: 600px) { 
+    .container {
+      width: 95%;
+    }
+    .results-text {
+      margin:3%;
+    }
+  }
+
 </style>

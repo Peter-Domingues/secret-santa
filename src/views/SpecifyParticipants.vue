@@ -1,34 +1,36 @@
 <template>
   <div class="background">
     <div class="grid-wrap">
-      <v-alert type="error" class="errorNext" v-if="anError">
+      <v-alert type="error" class="error-next" v-if="anError">
         <v-row align="center">
           <v-col class="grow">
             {{ errorMessage }}
           </v-col>
         </v-row>
       </v-alert>
-      <div class="myTitle">
+      <div class="my-title">
         O seu Papai Noel Secreto tem {{ numOfParticipants }} participantes!
       </div>
       <img src="santa2.png" class="santa" />
-      <div class="myText">Escreva o nome de cada um</div>
+      <div class="my-text">Escreva o nome de cada um</div>
       <div class="new-participant">
         <v-text-field
           color="success"
           label="Nome do Participante"
           v-model="newParticipantName"
-          class="pr-3"
+          class="field-name"
           outlined
           hide-details
           clearable
           @keyup.enter="addParticipant"
         ></v-text-field>
-        <v-btn large color="success" dark @click="addParticipant">
-          <v-icon x-large> mdi-plus </v-icon>
-        </v-btn>
+        <div class="btn-add">
+          <v-btn large color="success" dark @click="addParticipant" >
+            <v-icon x-large> mdi-plus </v-icon>
+          </v-btn>
+        </div>
       </div>
-      <div align="center" class="btnSpecify">
+      <div align="center" class="btn-specify">
         <v-btn x-large color="success" dark @click="selectParticipants">
           Sortear
         </v-btn>
@@ -36,7 +38,7 @@
           Voltar
         </v-btn>
       </div>
-      <v-list class="pt-0 listOfNames">
+      <v-list class="pt-0 list-of-names">
         <div
           v-for="person in participantsList"
           :key="person.id"
@@ -44,7 +46,7 @@
           <v-list-item>
             <template>
               <v-list-item-content>
-                <v-list-item-title class="nameText">
+                <v-list-item-title class="name-text">
                   {{ person.name }}
                 </v-list-item-title>
               </v-list-item-content>
@@ -213,25 +215,33 @@ export default {
   align-self: center;
   margin-bottom: 2%;
 }
-.listOfNames {
+.list-of-names {
   width: 50%;
   align-self: center;
 }
-.nameText {
+.name-text {
   font-family: "Montagu Slab", serif;
   font-size: clamp(16px, 5vw, 20px);
   color: #39853c;
 }
-.btnSpecify {
+.btn-specify {
     margin-bottom:1%;
+}
+.btn-add {
+  padding-left: 2%;
 }
 @media only screen and (max-width: 600px) {
  .new-participant {
-  width: 100%;
-  flex-direction: column;
+    width: 100%;
+    flex-direction: column;
+    margin-bottom: 0%;
   }
-  .btnSpecify {
-    margin:10% 2%;
+  .btn-specify {
+    margin:7% 2%;
+  }
+  .btn-add {
+    margin-top: 5%;
+    padding-left: 0%;
   }
 }
 </style>
